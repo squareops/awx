@@ -1,0 +1,13 @@
+---
+- hosts: all
+  tasks:
+    - name: install httpd
+      yum: "name={{ pkg }} state=latest"
+      become: true
+      become_user: root
+
+    - name: ensure apache is running
+      service:
+        name: httpd.service
+        state: started
+      become: yes
